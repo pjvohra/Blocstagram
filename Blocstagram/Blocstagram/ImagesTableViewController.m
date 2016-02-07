@@ -55,7 +55,6 @@
      return self.images.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell" forIndexPath:indexPath];
     // Configure the cell...
@@ -147,5 +146,4 @@
     UIImage *image = self.images[indexPath.row];
     return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
 }
-
 @end
