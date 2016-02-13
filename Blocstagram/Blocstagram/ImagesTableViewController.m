@@ -7,6 +7,11 @@
 //
 
 #import "ImagesTableViewController.h"
+#import "DataSource.h"
+#import "Media.h"
+#import "User.h"
+#import "Comment.h"
+#import "MediaTableViewCell.h"
 
 @interface ImagesTableViewController ()
 
@@ -17,14 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    for (int i = 1; i <= 10; i++) {
-        NSString *imageName = [NSString stringWithFormat:@"%d.jpg", i];
-        UIImage *image = [UIImage imageNamed:imageName];
-        if (image) {
-            [self.images addObject:image];
-        }
-    }
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"imageCell"];
+    [self.tableView registerClass:[MediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -52,39 +50,58 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-     return self.images.count;
+     return [DataSource sharedInstance].mediaItems.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell" forIndexPath:indexPath];
+   //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell" forIndexPath:indexPath];
     // Configure the cell...
     // #2
     
-    static NSInteger imageViewTag = 1234;
-    UIImageView *imageView = (UIImageView*)[cell.contentView viewWithTag:imageViewTag];
+    //static NSInteger imageViewTag = 1234;
+    //UIImageView *imageView = (UIImageView*)[cell.contentView viewWithTag:imageViewTag];
     
     // #3
-    if (!imageView) {
+    //if (!imageView) {
         // This is a new cell, it doesn't have an image view yet
-        imageView = [[UIImageView alloc] init];
-        imageView.contentMode = UIViewContentModeScaleToFill;
+      //  imageView = [[UIImageView alloc] init];
+       // imageView.contentMode = UIViewContentModeScaleToFill;
         
-        imageView.frame = cell.contentView.bounds;
-        imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+       // imageView.frame = cell.contentView.bounds;
+       // imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         
-        imageView.tag = imageViewTag;
-        [cell.contentView addSubview:imageView];
-    }
+        //imageView.tag = imageViewTag;
+        //[cell.contentView addSubview:imageView];
+   // }
     
-    UIImage *image = self.images[indexPath.row];
-    imageView.image = image;
 
-    imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+   // Media *item = [DataSource sharedInstance].mediaItems[indexPath.row];
+   // imageView.image = item.image;
+
+   // imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
-    imageView.tag = imageViewTag;
-    [cell.contentView addSubview:imageView];
+  //  imageView.tag = imageViewTag;
+  //  [cell.contentView addSubview:imageView];
+
+    MediaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mediaCell" forIndexPath:indexPath];
+    cell.mediaItem = [DataSource sharedInstance].mediaItems[indexPath.row];
     
     return cell;
+}
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+        
+        
+    }
+    return self;
+}
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Media *item = [DataSource sharedInstance].mediaItems[indexPath.row];
+    return [MediaTableViewCell heightForMediaItem:item width:CGRectGetWidth(self.view.frame)];
 }
 
 
@@ -132,18 +149,5 @@
 }
 */
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-        self.images = [NSMutableArray array];
-        
-    }
-    return self;
-}
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIImage *image = self.images[indexPath.row];
-    return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
-}
+
 @end
