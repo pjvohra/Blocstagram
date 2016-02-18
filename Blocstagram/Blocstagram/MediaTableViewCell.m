@@ -121,8 +121,13 @@ static NSParagraphStyle *paragraphStyle;
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
-    CGFloat imageHeight = self.mediaItem.image.size.height / self.mediaItem.image.size.width * CGRectGetWidth(self.contentView.bounds);
+    CGFloat imageHeight = 0;
+    if (self.mediaItem.image.size.width == 0) {
+        imageHeight = CGRectGetWidth(self.contentView.bounds);
+    }
+    else {
+        imageHeight = self.mediaItem.image.size.height / self.mediaItem.image.size.width * CGRectGetWidth(self.contentView.bounds);
+    }
     self.mediaImageView.frame = CGRectMake(0, 0, CGRectGetWidth(self.contentView.bounds), imageHeight);
     
     CGSize sizeOfUsernameAndCaptionLabel = [self sizeOfString:self.usernameAndCaptionLabel.attributedText];
