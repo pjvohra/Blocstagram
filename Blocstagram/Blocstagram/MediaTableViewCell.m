@@ -192,13 +192,13 @@ static NSParagraphStyle *paragraphStyle;
     self.commentLabelHeightConstraint.constant = commentLabelSize.height + 20;
     
     CGFloat imageHeightConstraint;
-    if (self.mediaItem.image.size.width==0) {
-        
-    }
-    
-    else {
+//    if (self.mediaItem.image.size.width==0) {
+//        
+//    }
+//    
+//    else {
         imageHeightConstraint = self.mediaItem.image.size.height / self.mediaItem.image.size.width * CGRectGetWidth(self.contentView.bounds);
-    }
+//    }
     
     //self.imageHeightConstraint.constant = self.mediaItem.image.size.height / self.mediaItem.image.size.width * CGRectGetWidth(self.contentView.bounds);
     
@@ -215,26 +215,38 @@ static NSParagraphStyle *paragraphStyle;
 }
 
 + (CGFloat) heightForMediaItem:(Media *)mediaItem width:(CGFloat)width {
-    // Make a cell
     MediaTableViewCell *layoutCell = [[MediaTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"layoutCell"];
     
-    // Set it to the given width, and the maximum possible height
-   // layoutCell.frame = CGRectMake(0, 0, width, CGFLOAT_MAX);
-    
     // Give it the media item
-   // layoutCell.mediaItem = mediaItem;
+    layoutCell.mediaItem = mediaItem;
     
-    // Make it adjust the image view and labels
-  //  [layoutCell layoutSubviews];
-    
-    // The height will be wherever the bottom of the comments label is
+    layoutCell.frame = CGRectMake(0, 0, width, CGRectGetHeight(layoutCell.frame));
     
     [layoutCell setNeedsLayout];
     [layoutCell layoutIfNeeded];
     
     // Get the actual height required for the cell
-    
     return CGRectGetMaxY(layoutCell.commentLabel.frame);
+    //    // Make a cell
+//    MediaTableViewCell *layoutCell = [[MediaTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"layoutCell"];
+//    
+//    // Set it to the given width, and the maximum possible height
+//   // layoutCell.frame = CGRectMake(0, 0, width, CGFLOAT_MAX);
+//    
+//    // Give it the media item
+//    [layoutCell setMediaItem:mediaItem];
+//    
+//    // Make it adjust the image view and labels
+//  //  [layoutCell layoutSubviews];
+//    
+//    // The height will be wherever the bottom of the comments label is
+//    
+//    [layoutCell setNeedsLayout];
+//    [layoutCell layoutIfNeeded];
+//    
+//    // Get the actual height required for the cell
+//    
+//    return CGRectGetMaxY(layoutCell.commentLabel.frame);
 }
 
 
