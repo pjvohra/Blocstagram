@@ -172,9 +172,7 @@
 //    }
 //    return self;
 //}
-//- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    Media *item = [DataSource sharedInstance].mediaItems[indexPath.row];
-//    return [MediaTableViewCell heightForMediaItem:item width:CGRectGetWidth(self.view.frame)];
+//- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {    Media *item = [DataSource sharedInstance].mediaItems[indexPath.row];    return [MediaTableViewCell heightForMediaItem:item width:CGRectGetWidth(self.view.frame)];
 //}
 //
 //
