@@ -253,7 +253,7 @@ static NSParagraphStyle *paragraphStyle;
   //  layoutCell.frame = CGRectMake(0, 0, width, CGFLOAT_MAX);
     
     // Give it the media item
-  //  layoutCell.mediaItem = mediaItem;
+  layoutCell.mediaItem = mediaItem;
     
     // Make it adjust the image view and labels
   //  [layoutCell layoutSubviews];
