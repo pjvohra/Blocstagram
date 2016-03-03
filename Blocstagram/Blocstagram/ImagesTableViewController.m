@@ -87,14 +87,15 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     Media *item = [self items].mediaItems[indexPath.row];
     return [MediaTableViewCell heightForMediaItem:item width:CGRectGetWidth(self.view.frame)];
+
 }
 
 @end
 
 //- (void)viewDidLoad {
-//    [super viewDidLoad];
+//[super viewDidLoad];
 //
-//    [self.tableView registerClass:[MediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
+//[self.tableView registerClass:[MediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
 //    
 //    // Uncomment the following line to preserve selection between presentations.
 //    // self.clearsSelectionOnViewWillAppear = NO;
@@ -104,8 +105,8 @@
 //}
 //
 //
-//- (void)didReceiveMemoryWarning {
-//    [super didReceiveMemoryWarning];
+// - (void)didReceiveMemoryWarning {
+//   [super didReceiveMemoryWarning];
 //    
 ////    for (int i = 1; i <= 10; i++) {
 ////        NSString *imageName = [NSString stringWithFormat:@"%d.jpg", i];
@@ -156,7 +157,7 @@
 //  //  imageView.tag = imageViewTag;
 //  //  [cell.contentView addSubview:imageView];
 //
-//    MediaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mediaCell" forIndexPath:indexPath];
+//    MediaTableViewCell *cell = [tableView dequeueReusa MediaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mediaCell" forIndexPath:indexPath];bleCellWithIdentifier:@"mediaCell" forIndexPath:indexPath];
 //    cell.mediaItem = [DataSource sharedInstance].mediaItems[indexPath.row];
 //    
 //    return cell;
