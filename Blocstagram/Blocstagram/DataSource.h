@@ -19,4 +19,6 @@ typedef void (^NewItemCompletionBlock)(NSError *error);
  - (void) requestOldItemsWithCompletionHandler:(NewItemCompletionBlock)completionHandler;
  + (NSString *) instagramClientID;
  @property (nonatomic, strong, readonly) NSString *accessToken;
+
+
 @end
